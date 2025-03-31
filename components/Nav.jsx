@@ -4,9 +4,8 @@ function Nav() {
 
     return (
         <nav>
-            <h3>Nav</h3>
-            {/* <Link className='link' to='/'>Home</Link>
-            <Link className='link' to='/articles'>Articles</Link> */}
+            <Link to='/'>Home</Link>
+            <Link to='/articles'>Articles</Link>
         </nav>
     )
 }

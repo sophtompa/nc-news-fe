@@ -8,4 +8,10 @@ const getAllArticles = () => {
         })
     }
 
-export { getAllArticles }
+const getArticle = (article_id) => {
+    return api.get(`/articles/${article_id}`).then(({data}) => {
+        return data.article
+    })
+}
+
+export { getAllArticles, getArticle }

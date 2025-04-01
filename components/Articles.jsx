@@ -15,12 +15,9 @@ function Articles() {
             })
         }, [])
 
-    
-
-
-
-
-
+    function handleClick(article_id) {
+        navigate(`/articles/${article_id}`)
+    }
 
 
     if (isLoading) return <h3>Getting Articles....</h3>
@@ -31,7 +28,7 @@ function Articles() {
         <section>
         {articles.map((article) => {
             return (
-                <ul key={article.title} className='article-display'>
+                <ul key={article.title} className='article-display' value={article.article_id} onClick={() => handleClick(article.article_id)}>
                     <li className='title'>{article.title}</li>
                     <li>posted by: {article.author}</li>
                     <li>topic: {article.topic}</li>

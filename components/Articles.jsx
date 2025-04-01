@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { getAllArticles } from "../api"
 
 function Articles() {
     const [isLoading, setLoading] = useState(true)
     const [articles, setArticles] = useState([])
+    const navigate = useNavigate()
 
     useEffect(
         () => { 
@@ -13,6 +15,14 @@ function Articles() {
             })
         }, [])
 
+    
+
+
+
+
+
+
+
     if (isLoading) return <h3>Getting Articles....</h3>
 
     return(
@@ -21,7 +31,7 @@ function Articles() {
         <section>
         {articles.map((article) => {
             return (
-                <ul key={article.title}>
+                <ul key={article.title} className='article-display'>
                     <li className='title'>{article.title}</li>
                     <li>posted by: {article.author}</li>
                     <li>topic: {article.topic}</li>

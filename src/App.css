@@ -39,3 +39,7 @@ img {
 .title {
   font-size: larger;
 }
+
+.article-display:hover {
+  transform: scale(1.25);
+}

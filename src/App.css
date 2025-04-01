@@ -41,5 +41,11 @@ img {
 }
 
 .article-display:hover {
-  transform: scale(1.25);
+  transform: scale(1.15);
+}
+
+.hide-show {
+  height: 40px;
+  width: 90px;
+  background-color: beige;
 }

@@ -17,7 +17,7 @@ function Comments() {
         }, [article_id])
 
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <p>...</p>;
     if (!comments) return <p>No comments yet.</p>
 
     
@@ -40,7 +40,6 @@ function Comments() {
         })}
             </div>
         )}
-       
         </>
     )
 }

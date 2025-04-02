@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getArticle } from "../api"
+import Votes from "./Votes";
 
 function Article() {
     const { article_id} = useParams();
@@ -15,7 +16,6 @@ function Article() {
             })
         }, [article_id])
 
-
     if (isLoading) return <p>Loading...</p>;
     if (!article) return <p>No article found</p>;
 
@@ -25,6 +25,7 @@ function Article() {
         <p>Posted by: {article.author}</p>
         <p>{article.body}</p>
         <img src={article.article_img_url}></img>
+        <Votes article_id={article_id}/>
         </>
     )
 }

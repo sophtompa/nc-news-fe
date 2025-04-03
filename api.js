@@ -20,4 +20,13 @@ const getComments = (article_id) => {
     })
 }
 
-export { getAllArticles, getArticle, getComments }
+const postComment = (article_id, {body}) => {
+    return api.post(`/articles/${article_id}/comments`, {body}).then((data) => {
+        return data
+    })
+    .catch((err) => {
+        return err;
+    })
+}
+
+export { getAllArticles, getArticle, getComments, postComment }

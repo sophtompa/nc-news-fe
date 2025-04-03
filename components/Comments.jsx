@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
 import { getComments } from "../api"
+import NewComment from "./NewComment";
 
 function Comments() {
     const { article_id } = useParams();
@@ -11,11 +12,11 @@ function Comments() {
     useEffect(
         () => { 
             getComments(article_id).then((commentsData) => { 
+                console.log(commentsData)
                 setComments(commentsData)
                 setLoading(false)
             })
         }, [article_id])
-
 
     if (isLoading) return <p>...</p>;
     if (!comments) return <p>No comments yet.</p>
@@ -25,6 +26,8 @@ function Comments() {
     return (
         <>
         <h1>Comments</h1> 
+        <NewComment setComments={setComments} getComments={getComments}/>
+        <div className='hide-show-separation'></div>
         <button className='hide-show' onClick={() => setIsVisible(!isVisible)}>{isVisible ? 'Hide comments' : 'Show comments'}</button>
         {isVisible && (
             <div>

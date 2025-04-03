@@ -29,4 +29,10 @@ const postComment = (article_id, {body}) => {
     })
 }
 
-export { getAllArticles, getArticle, getComments, postComment }
+const deleteComment = (comment_id) => {
+    return api.delete(`/comments/${comment_id}`).then((data) => {
+        return data
+    })
+}
+
+export { getAllArticles, getArticle, getComments, postComment, deleteComment }

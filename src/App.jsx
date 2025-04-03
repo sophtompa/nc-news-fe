@@ -6,7 +6,6 @@ import Welcome from '../components/Welcome'
 import Articles from '../components/Articles'
 import Article from '../components/Article'
 import Comments from '../components/Comments'
-import Votes from '../components/Votes'
 
 function App() {
 

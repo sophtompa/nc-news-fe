@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router"
 import { getComments } from "../api"
 import NewComment from "./NewComment";
+import DeleteComment from "./DeleteComment";
 
 function Comments() {
     const { article_id } = useParams();
@@ -33,10 +34,11 @@ function Comments() {
         {comments.map((comment) => {
             return (
                 <ul key={comment.comment_id}>
-                <li>{comment.body}</li>
+                <li className="comment-body">{comment.body}</li>
                 <li>Posted by: {comment.author}</li>
                 <li>Posted at: {comment.created_at}</li>
                 <li>Votes: {comment.votes}</li>
+                <DeleteComment comment_id={comment.comment_id} article_id={comment.article_id} setComments={setComments}/>
                 </ul>
             )
         })}

@@ -19,11 +19,27 @@ function Articles() {
         navigate(`/articles/${article_id}`)
     }
 
+    function handleTopic() {
+        if(topic) {
+            getAllArticles().then((articleData) => { 
+                setArticles(articleData)
+                setLoading(false)
+        })
+    }
+    }
+
 
     if (isLoading) return <h3>Getting Articles....</h3>
 
     return(
         <>
+        <p>Sort articles by:</p><select>
+            <option value='placeholder' disabled selected>Category</option>
+            <option value='all-articles'>all articles</option>
+            <option value='cooking'>cooking</option>
+            <option value='coding'>coding</option>
+            <option value='football'>football</option>
+        </select>
         <h3 className='articles'>Articles: </h3>
         <section>
         {articles.map((article) => {

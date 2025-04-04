@@ -1,44 +1,44 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAllArticles } from "../api"
+import { useSearchParams } from "react-router-dom"
 
 function Articles() {
     const [isLoading, setLoading] = useState(true)
     const [articles, setArticles] = useState([])
     const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useSearchParams();
+    const topic = searchParams.get("topic") || ""
 
     useEffect(
         () => { 
-            getAllArticles().then((articleData) => { 
+            getAllArticles(topic).then((articleData) => { 
                 setArticles(articleData)
                 setLoading(false)
             })
-        }, [])
+        }, [topic])
 
     function handleClick(article_id) {
         navigate(`/articles/${article_id}`)
     }
 
-    function handleTopic() {
-        if(topic) {
-            getAllArticles().then((articleData) => { 
-                setArticles(articleData)
-                setLoading(false)
-        })
+    function handleTopic(event) {
+        const selectedTopic = event.target.value
+        setSearchParams(selectedTopic ? {topic: selectedTopic} : {});
     }
-    }
+
 
 
     if (isLoading) return <h3>Getting Articles....</h3>
 
     return(
         <>
-        <p>Sort articles by:</p><select>
-            <option value='placeholder' disabled selected>Category</option>
-            <option value='all-articles'>all articles</option>
-            <option value='cooking'>cooking</option>
-            <option value='coding'>coding</option>
-            <option value='football'>football</option>
+        <p>Sort articles by:</p><select onChange={handleTopic} value={topic}>
+            <option value="" disabled>Topic</option>
+            <option value="">All Articles</option>
+            <option value='cooking'>Cooking</option>
+            <option value='coding'>Coding</option>
+            <option value='football'>Football</option>
         </select>
         <h3 className='articles'>Articles: </h3>
         <section>
@@ -58,6 +58,6 @@ function Articles() {
         </section>
         </>
     )
-}
+} 
 
 export default Articles;
